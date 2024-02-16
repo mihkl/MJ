@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MJ.Pages.Controls;
 public static class HtmlEditItem {
-    public static IHtmlContent EditItem<TModel, TValue>( this IHtmlHelper<TModel> h, Expression<Func<TModel, TValue>> e) {
+    public static IHtmlContent EditItem<TModel, TValue>(this IHtmlHelper<TModel> h, Expression<Func<TModel, TValue>> e) {
 
         var lab = h.LabelFor(e, new { @class = "control-label" });
         var ed = h.EditorFor(e, new { htmlAttributes = new { @class = "form-control" } });
@@ -22,14 +22,7 @@ public static class HtmlEditItem {
 
         return new HtmlString(writer.ToString());
     }
-    //public static IHtmlContent ShowItem<TModel, TValue>(this IHtmlHelper<TModel> h, Expression<Func<TModel, TValue>> e) {
-    //<dt class = "col-sm-2">
-    //        @Html.DisplayNameFor(model => model.Title)
-    //    </dt>
-    //    <dd class = "col-sm-10">
-    //        @Html.DisplayFor(model => model.Title)
-    //    </dd>
-
-    //}
 }
+
+
 
