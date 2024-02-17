@@ -2,21 +2,8 @@
 @using MJ.Pages.Controls
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Movie";
+    Layout = "_Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Movie</h4>
-    <hr />
-    <dl class="row">
-    @Html.ShowItem(Model => Model.Title)
-    @Html.ShowItem(Model => Model.ReleaseDate)
-    @Html.ShowItem(Model => Model.Genre)
-    @Html.ShowItem(Model => Model.Price)
-    </dl>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<partial name="_ShowMovie" />

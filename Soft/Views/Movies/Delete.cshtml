@@ -2,24 +2,10 @@
 @using MJ.Pages.Controls
 
 @{
-    ViewData["Title"] = "Delete";
+    Layout = "_Delete";
+    ViewData["Title"] = "Movie";
+    ViewData["ItemId"] = Model.Id;
 }
 
-<h1>Delete</h1>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Movie</h4>
-    <hr />
-    <dl class="row">
-    @Html.ShowItem(Model => Model.Title)
-    @Html.ShowItem(Model => Model.ReleaseDate)
-    @Html.ShowItem(Model => Model.Genre)
-    @Html.ShowItem(Model => Model.Price)
-    </dl>
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
-</div>
+<partial name="_ShowMovie" />
+  
