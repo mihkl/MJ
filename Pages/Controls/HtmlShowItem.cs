@@ -2,7 +2,7 @@
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace MJ.Pages.Controls;
 
@@ -40,24 +40,19 @@ public static class HtmlShowItem {
 
         return new HtmlString(writer.ToString());
     }
+    //public static IHtmlContent Index<TModel>(
+    //    this IHtmlHelper<TModel> htmlHelper,
+    //    params Expression<Func<TModel, object>>[] expressions) {
+    //    var tr = new TagBuilder("tr");
 
-    public static IHtmlContent IndexTable<TModel, TValue> (this IHtmlHelper<TModel> h,Expression<Func<TModel, TValue>> e,TValue val) {
-        var td = new TagBuilder("td");
-        td.InnerHtml.AppendHtml(h.DisplayFor(e, val));
-        return td;
-    }
-    public static IHtmlContent IndexHeader (this IHtmlHelper h, string headerText) {
-        
-        var th = new TagBuilder("th");
-        th.InnerHtml.Append(headerText);
-        return th;
-    }
+    //    foreach (var expression in expressions) {
+    //        var th = new TagBuilder("th");
+    //        th.InnerHtml.AppendHtml(htmlHelper.DisplayNameFor(expression));
+    //        tr.InnerHtml.AppendHtml(th);
+    //    }
 
-
-
-
-
-
+    //    return tr;
+    //}
 
 }
 
