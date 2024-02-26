@@ -1,5 +1,7 @@
 ﻿using System.Linq.Expressions;
+using System.Reflection;
 using System.Text.Encodings.Web;
+using System.Xml.Linq;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -46,19 +48,62 @@ public static class HtmlShowItem {
         td.InnerHtml.AppendHtml(h.DisplayFor(e, val));
         return td;
     }
-    public static IHtmlContent IndexHeader (this IHtmlHelper h, string headerText) {
+    public static IHtmlContent ShowTable<TModel>(this IHtmlHelper<IEnumerable<TModel>> h, IEnumerable<TModel> items) {
         
-        var th = new TagBuilder("th");
-        th.InnerHtml.Append(headerText);
-        return th;
+        var table = new TagBuilder("table");
+        table.AddCssClass("table");
+
+        var properties = getProperties(typeof(TModel));
+
+        var thead = h.createHead(properties);
+        table.InnerHtml.AppendHtml(thead);
+
+        var body = h.createBody(properties, items);
+        table.InnerHtml.AppendHtml(body);
+
+        var writer = new StringWriter();
+        table.WriteTo(writer, HtmlEncoder.Default);
+        return new HtmlString(writer.ToString());
     }
 
+    private static TagBuilder createBody<TModel>(this IHtmlHelper<IEnumerable<TModel>> h, 
+        PropertyInfo[] properties, IEnumerable<TModel> items) {
+        var tbody = new TagBuilder("tbody");
+        foreach( var i in items ) {
+            var tr = new TagBuilder("tr");
+            foreach (var p in properties) {
+                var td = new TagBuilder("td");
+                var v = p.GetValue(i)?.ToString()?? string.Empty;
+                var value = h.Raw(v);
+                td.InnerHtml.AppendHtml(value);
+                tr.InnerHtml.AppendHtml(td);
+            }
+            tbody.InnerHtml.AppendHtml(tr);
+        }
+        return tbody;
+    }
 
+    private static TagBuilder createHead<TModel>(this IHtmlHelper<IEnumerable<TModel>> h,
+        PropertyInfo[] properties) {
+        var thead = new TagBuilder("thead");
+        var tr = new TagBuilder("tr");
+        foreach (var p in properties) h.addColumn(tr, p.Name);  
+        h.addColumn(tr, string.Empty);
+        thead.InnerHtml.AppendHtml(tr);
+        return thead;
+	}
 
+	private static PropertyInfo[] getProperties(Type t)
+        => t?.GetProperties()?.Where(x => x.Name != "Id")?.ToArray() ?? [];
 
+    private static void addColumn<TModel>(this IHtmlHelper<IEnumerable<TModel>> h,
+        TagBuilder tr, string value, string tag = "th") {
+        var th = new TagBuilder(tag);
+        var v = h.Raw(value);
+        th.InnerHtml.AppendHtml(v);
+        tr.InnerHtml.AppendHtml(th);
 
-
-
+    }
 }
 
 
