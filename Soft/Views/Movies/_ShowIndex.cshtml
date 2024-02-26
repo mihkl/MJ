@@ -1,0 +1,27 @@
+﻿@model IEnumerable<MJ.Soft.Models.Movie>
+@using MJ.Pages.Controls
+<thead>
+    <tr>
+        @Html.IndexHeader("Title")
+        @Html.IndexHeader("Release Date")
+        @Html.IndexHeader("Genre")
+        @Html.IndexHeader("Price")
+        <th></th>
+    </tr>
+</thead>
+<tbody>
+@foreach (var item in Model) {
+    <tr>
+        @Html.IndexTable(modelItem => item.Title, item.Title)
+        @Html.IndexTable(modelItem => item.ReleaseDate, item.ReleaseDate)
+        @Html.IndexTable(modelItem => item.Genre, item.Genre)
+        @Html.IndexTable(modelItem => item.Price, item.Price)
+        <td>
+        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+    </td>
+    </tr>
+}  
+</tbody>
+
