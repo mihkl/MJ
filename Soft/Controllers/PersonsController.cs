@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MJ.Domain;
 using MJ.Soft.Data;
-using MJ.Soft.Models;
 
 namespace MJ.Soft.Controllers;
 

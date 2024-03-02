@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MJ.Soft.Models;
+using MJ.Domain;
 
-namespace MJ.Soft.Data
-{
+namespace MJ.Soft.Data {
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext(options)
     {
         public DbSet<Movie> Movie { get; set; } = default!;

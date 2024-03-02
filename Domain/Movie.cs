@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MJ.Soft.Models;
+namespace MJ.Domain;
 
-public class Movie
-{
-    public int Id { get; set; }
+public class Movie : Entity{
+   
     public string? Title { get; set; }
     [DataType(DataType.Date)] public DateTime ReleaseDate { get; set; }
     public string? Genre { get; set; }
