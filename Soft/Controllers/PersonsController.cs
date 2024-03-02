@@ -5,8 +5,7 @@ using MJ.Soft.Data;
 
 namespace MJ.Soft.Controllers;
 
-public class PersonsController(ApplicationDbContext context): Controller {
-    private readonly ApplicationDbContext c = context;
+public class PersonsController(ApplicationDbContext context): BaseController(context) {
     public async Task<IActionResult> Index() => View(await c.Persons.ToListAsync());
     public async Task<IActionResult> Details(int? id) {
         if (id == null) return NotFound();

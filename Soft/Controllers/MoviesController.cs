@@ -4,9 +4,9 @@ using MJ.Domain;
 using MJ.Soft.Data;
 
 namespace MJ.Soft.Controllers;
+public class MoviesController(ApplicationDbContext context): BaseController(context) {
 
-public class MoviesController(ApplicationDbContext context): Controller {
-    private readonly ApplicationDbContext c = context;
+    
     public async Task<IActionResult> Index() => View(await c.Movie.ToListAsync());
     public async Task<IActionResult> Details(int? id) {
         if (id == null) return NotFound();

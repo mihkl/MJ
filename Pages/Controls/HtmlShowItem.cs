@@ -4,6 +4,7 @@ using System.Text.Encodings.Web;
 using System.Xml.Linq;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MJ.Domain;
 
 
 namespace MJ.Pages.Controls;
@@ -48,7 +49,8 @@ public static class HtmlShowItem {
         td.InnerHtml.AppendHtml(h.DisplayFor(e, val));
         return td;
     }
-    public static IHtmlContent ShowTable<TModel>(this IHtmlHelper<IEnumerable<TModel>> h, IEnumerable<TModel> items) {
+    public static IHtmlContent ShowTable<TModel>(this IHtmlHelper<IEnumerable<TModel>> h, IEnumerable<TModel> items)
+        where TModel : Entity{
         
         var table = new TagBuilder("table");
         table.AddCssClass("table");
@@ -67,7 +69,7 @@ public static class HtmlShowItem {
     }
 
     private static TagBuilder createBody<TModel>(this IHtmlHelper<IEnumerable<TModel>> h, 
-        PropertyInfo[] properties, IEnumerable<TModel> items) {
+        PropertyInfo[] properties, IEnumerable<TModel> items) where TModel : Entity{
         var tbody = new TagBuilder("tbody");
         foreach( var i in items ) {
             var tr = new TagBuilder("tr");
@@ -79,7 +81,7 @@ public static class HtmlShowItem {
                 td.InnerHtml.AppendHtml(value);
                 tr.InnerHtml.AppendHtml(td);
             }
-            var id = i.GetType()?.GetProperty("Id")?.GetValue(i)?.ToString()?? string.Empty;
+            var id = i?.Id.ToString()?? string.Empty;
 			td = new TagBuilder("td");
             h.AddLink("Edit", id, td);
 			h.AddLink("Details", id, td);
