@@ -71,17 +71,33 @@ public static class HtmlShowItem {
         var tbody = new TagBuilder("tbody");
         foreach( var i in items ) {
             var tr = new TagBuilder("tr");
+            TagBuilder td;
             foreach (var p in properties) {
-                var td = new TagBuilder("td");
+                td = new TagBuilder("td");
                 var v = p.GetValue(i)?.ToString()?? string.Empty;
                 var value = h.Raw(v);
                 td.InnerHtml.AppendHtml(value);
                 tr.InnerHtml.AppendHtml(td);
             }
+            var id = i.GetType()?.GetProperty("Id")?.GetValue(i)?.ToString()?? string.Empty;
+			td = new TagBuilder("td");
+            h.AddLink("Edit", id, td);
+			h.AddLink("Details", id, td);
+			h.AddLink("Delete", id, td, true);
+			tr.InnerHtml.AppendHtml(td);
             tbody.InnerHtml.AppendHtml(tr);
+
+			
         }
         return tbody;
     }
+    private static void AddLink<TModel>(this IHtmlHelper<IEnumerable<TModel>> h, string action, string id, TagBuilder td
+        ,bool isLast = false) {
+		var link = h.ActionLink(action, action, new { Id = id });
+		td.InnerHtml.AppendHtml(link);
+        if (isLast) return;
+        td.InnerHtml.AppendHtml(new HtmlString(" | "));
+	}
 
     private static TagBuilder createHead<TModel>(this IHtmlHelper<IEnumerable<TModel>> h,
         PropertyInfo[] properties) {
