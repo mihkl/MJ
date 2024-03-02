@@ -1,0 +1,8 @@
+﻿@model IEnumerable<MJ.Soft.Models.Person>
+@using MJ.Pages.Controls
+
+@{
+    ViewData["Title"] = "Person";
+    Layout = "_Index";
+}
+@Html.ShowTable(Model)

@@ -6,6 +6,8 @@ namespace MJ.Soft.Data
 {
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext(options)
     {
-        public DbSet<MJ.Soft.Models.Movie> Movie { get; set; } = default!;
+        public DbSet<Movie> Movie { get; set; } = default!;
+
+        public DbSet<Person> Persons { get; set; } = default!;
     }
 }
