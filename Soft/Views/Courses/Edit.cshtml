@@ -1,0 +1,12 @@
+﻿@model MJ.Domain.Course
+
+
+@{
+    ViewData["Title"] = "Course";
+    Layout = "_Edit";
+    ViewData["ItemId"] = Model.Id;
+}
+
+
+<partial name="_EditCourse" />
+

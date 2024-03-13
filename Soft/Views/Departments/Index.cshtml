@@ -1,0 +1,8 @@
+﻿@model IEnumerable<MJ.Domain.Department>
+@using MJ.Pages.Controls
+
+@{
+    ViewData["Title"] = "Department";
+    Layout = "_Index";
+}
+@Html.ShowTable(Model)

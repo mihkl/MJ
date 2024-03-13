@@ -1,0 +1,8 @@
+﻿@model IEnumerable<MJ.Domain.Instructor>
+@using MJ.Pages.Controls
+
+@{
+    ViewData["Title"] = "Instructor";
+    Layout = "_Index";
+}
+@Html.ShowTable(Model)

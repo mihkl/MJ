@@ -7,11 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soft", "Soft\Soft.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pages", "Pages\Pages.csproj", "{6C69B6B4-9559-4453-95DF-19C501956726}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{6A7F9231-503D-4E7A-8E52-E9FE28CEB5B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{6A7F9231-503D-4E7A-8E52-E9FE28CEB5B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facade", "Facade\Facade.csproj", "{F370FB6B-22ED-4E2C-B295-212487BCD489}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Facade", "Facade\Facade.csproj", "{F370FB6B-22ED-4E2C-B295-212487BCD489}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra", "Infra\Infra.csproj", "{B9FB3324-E45E-4851-B1B6-EE98B7359576}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Infra\Infra.csproj", "{B9FB3324-E45E-4851-B1B6-EE98B7359576}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Domain", "Tests\Tests.Domain\Tests.Domain.csproj", "{D097E06D-3E8D-4159-9181-F7160C7D2AF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{B9FB3324-E45E-4851-B1B6-EE98B7359576}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9FB3324-E45E-4851-B1B6-EE98B7359576}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9FB3324-E45E-4851-B1B6-EE98B7359576}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D097E06D-3E8D-4159-9181-F7160C7D2AF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D097E06D-3E8D-4159-9181-F7160C7D2AF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D097E06D-3E8D-4159-9181-F7160C7D2AF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D097E06D-3E8D-4159-9181-F7160C7D2AF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

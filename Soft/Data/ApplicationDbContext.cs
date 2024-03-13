@@ -5,8 +5,11 @@ using MJ.Domain;
 namespace MJ.Soft.Data {
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext(options)
     {
-        public DbSet<Movie> Movie { get; set; } = default!;
+        public DbSet<Student> Students { get; set; } = default !;
+        public DbSet<Instructor> Instructors { get; set; } = default!;
+        public DbSet<Department> Departments { get; set; } = default!;
+        public DbSet<Course> Courses { get; set; } = default!;
 
-        public DbSet<Person> Persons { get; set; } = default!;
+
     }
 }
